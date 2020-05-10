@@ -49,7 +49,7 @@ string AnimalQueue::dequeueDog() {
     }
     string data = t->next->data;
     t->next = t->next->next;
-    first->next = t;
+    //first->next = t;
     if (first == NULL) last = NULL;
     return data;
 }
@@ -68,7 +68,7 @@ string AnimalQueue::dequeueCat() {
     }
     string data = t->next->data;
     t->next = t->next->next;
-    first->next = t;
+    //first->next = t;
     if (first == NULL) last = NULL;
     return data;
 }
