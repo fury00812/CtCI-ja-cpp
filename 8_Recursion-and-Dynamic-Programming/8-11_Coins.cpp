@@ -5,9 +5,9 @@ using namespace std;
 int ans1(int amount) {
     int ways=0;
     for (int i=0; i*25<=amount; i++) {
-        for (int j=0; j*10<=amount; j++) {
-            for (int k=0; k*5<=amount; k++) {
-                if ((i*25+j*10+k*5)<=amount) ways++;
+        for (int j=0; j*10<=amount-i*25; j++) {
+            for (int k=0; k*5<=amount-i*25-j*10; k++) {
+                ways++;
             }
         }
     }
@@ -15,7 +15,7 @@ int ans1(int amount) {
 }
 
 int ans2(int amount, vector<int> denoms, int index, vector<vector<int>> map) {
-//    if (map.at(amount).at(index)>0) return map.at(amount).at(index)>0; // メモ化
+    if (map.at(amount).at(index)>0) return map.at(amount).at(index)>0; // メモ化
     if (index>=(int)denoms.size()-1) return 1; // 終了条件
     
     int denomAmount = denoms.at(index);
@@ -24,7 +24,7 @@ int ans2(int amount, vector<int> denoms, int index, vector<vector<int>> map) {
         int amountRemaining = amount-i*denomAmount;
         ways += ans2(amountRemaining, denoms, index+1, map);
     }
-//    map.at(amount).at(index) = ways;
+    map.at(amount).at(index) = ways;
     return ways;
 }
 
